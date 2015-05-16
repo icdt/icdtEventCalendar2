@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <link href='../fullcalendar.css' rel='stylesheet' />
+    <link href='../fullcalendar.print.css' rel='stylesheet' media='print' />
+    <!-- ClockPicker CSS -->
+    <link rel="stylesheet" href="../lib/ClockPicker/bootstrap.min.css">
+    <link rel="stylesheet" href="../lib/ClockPicker/bootstrap-clockpicker.min.css">
+    <link rel="stylesheet" href="../lib/ClockPicker/github.min.css">
+    <!-- ptTimeSelect CSS -->
+    <!--<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/redmond/jquery-ui.css" />
+    <link rel="stylesheet" href="../lib/ptTimeSelect/jquery.ptTimeSelect.css">-->
+    <style>
+        body {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 14px;
+            font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+        }
+
+        #wrap {
+            width: 1100px;
+            margin: 0 auto;
+        }
+
+        #external-events {
+            float: left;
+            width: 150px;
+            padding: 0 10px;
+            border: 1px solid #ccc;
+            background: #eee;
+            text-align: left;
+        }
+
+            #external-events h4 {
+                font-size: 16px;
+                margin-top: 0;
+                padding-top: 1em;
+            }
+
+            #external-events .fc-event {
+                margin: 10px 0;
+                cursor: pointer;
+            }
+
+            #external-events p {
+                margin: 1.5em 0;
+                font-size: 11px;
+                color: #666;
+            }
+
+                #external-events p input {
+                    margin: 0;
+                    vertical-align: middle;
+                }
+
+        #calendar {
+            float: right;
+            width: 900px;
+        }
+
+        .form-input {
+            width: 100px;
+            height: 22px;
+            padding: 2px 5px;
+            margin-top: 5px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            background-color: #FFF;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        }
+
+        .disabled {
+            background: #f2f2f2;
+            cursor: not-allowed;
+        }
+    </style>
+    <script src='../lib/moment.min.js'></script>
+    <script src='../lib/jquery.min.js'></script>
+    <script src='../lib/jquery-ui.custom.min.js'></script>
+    <script src='../fullcalendar.min.js'></script>
+    <script src='../lang-all.js'></script>
+    <!-- ClockPicker JS -->
+    <script src="../lib/ClockPicker/bootstrap.min.js"></script>
+    <script src="../lib/ClockPicker/bootstrap-clockpicker.min.js"></script>
+    <script>
+        $(function () {
+            $('.date').clockpicker({
+                placement: 'bottom',
+                align: 'left',
+                autoclose: true,
+                'default': 'now'
+            });
+        });
+    </script>
+    <!-- ptTimeSelect JS -->
+    <!--<script src="../lib/ptTimeSelect/jquery.ptTimeSelect.js"></script>-->
+    <!--<script>
+        $(function () {
+            $('.date').ptTimeSelect({
+                hoursLabel: 'Hour',
+                minutesLabel: 'Minutes',
+                setButtonLabel: '確定'
+            });
+        });
+
+    </script>-->
+    <script>
+
+        $(document).ready(function () {
+
+
+            /* initialize the external events
+            -----------------------------------------------------------------*/
+
+            $('#external-events .fc-event').each(function () {
+
+                // store data so the calendar knows to render an event upon drop
+                $(this).data('event', {
+                    title: $.trim($(this).text()), // use the element's text as the event title
+                    stick: true // maintain when user navigates (see docs on the renderEvent method)
+                });
+
+                // make the event draggable using jQuery UI
+                $(this).draggable({
+                    zIndex: 999,
+                    revert: true,      // will cause the event to go back to its
+                    revertDuration: 0  //  original position after the drag
+                });
+
+            });
+
+
+            /* initialize the calendar
+            -----------------------------------------------------------------*/
+            var $calendar = $('#calendar');
+            var today = new Date();
+
+            $calendar.fullCalendar({
+                theme: false,
+                lang: 'zh-tw',
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                editable: true,
+                droppable: true, // this allows things to be dropped onto the calendar
+                drop: function (date, allDay) {
+                    // is the "remove after drop" checkbox checked?
+                    if ($('#drop-remove').is(':checked')) {
+                        // if so, remove the element from the "Draggable Events" list
+                        $(this).remove();
+                    }   
+
+                    var originalEventObject = $(this).data('eventObject');
+
+                    // we need to copy it, so that multiple events don't have a reference to the same object
+                    var copiedEventObject = $.extend({}, originalEventObject);
+
+                    var sdate = $.fullCalendar.moment(date.format());  // Create a clone of the dropped date.
+                    sdate.stripTime();        // The time should already be stripped but lets do a sanity check.
+                    sdate.time($("#itemstart").val() + ':00');   // Set a default start time.
+                    copiedEventObject.start = sdate;
+
+                    var edate = $.fullCalendar.moment(date.format());  // Create a clone.
+                    edate.stripTime();        // Sanity check.
+                    edate.time($("#itemend").val() + ':00');  // Set a default end time.
+                    copiedEventObject.end = edate;
+                    // render the event on the calendar
+                    // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+                    $calendar.fullCalendar('renderEvent', copiedEventObject, true);
+                },
+                eventClick: function (calEvent, jsEvent, view) {
+                    $calendar.fullCalendar('removeEvents', function (event) {
+                        return event == calEvent;
+                    });
+                },
+                dayClick: function (date, allDay, jsEvent, view) {
+                    if (date > today) {
+                        // change the day's background color just for fun
+                        var content = $("#itemtitle").val() + " " + $("#doctor").val();
+                        var originalEventObject = $(this).data('eventObject');
+
+                        // we need to copy it, so that multiple events don't have a reference to the same object
+                        var copiedEventObject = $.extend({}, originalEventObject);
+
+                        var sdate = $.fullCalendar.moment(date.format());  // Create a clone of the dropped date.
+                        sdate.stripTime();        // The time should already be stripped but lets do a sanity check.
+                        sdate.time($("#itemstart").val() + ':00');   // Set a default start time.
+                        copiedEventObject.start = sdate;
+
+                        var edate = $.fullCalendar.moment(date.format());  // Create a clone.
+                        edate.stripTime();        // Sanity check.
+                        edate.time($("#itemend").val() + ':00');  // Set a default end time.
+                        copiedEventObject.end = edate;
+                        copiedEventObject.title = content;
+                        // render the event on the calendar
+                        // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+                        $calendar.fullCalendar('renderEvent', copiedEventObject, true);
+                    }
+                },
+                dayRender: function (date, cell) {
+                    if (date < today.setDate(new Date().getDate() - 1)) {
+                        $(cell).addClass('disabled');
+                    }
+                }
+            });
+
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $("#send").click(function () {
+                var content = $("#itemtitle").val() + " " + $("#doctor").val();
+                $(".item").append("<div class='fc-event'>" + content + "</div>");
+
+                $('#external-events .fc-event').each(function () {
+
+                    // store data so the calendar knows to render an event upon drop
+                    $(this).data('event', {
+                        title: $.trim($(this).text()), // use the element's text as the event title
+                        stick: true // maintain when user navigates (see docs on the renderEvent method)
+                    });
+
+                    // make the event draggable using jQuery UI
+                    $(this).draggable({
+                        zIndex: 999,
+                        revert: true,      // will cause the event to go back to its
+                        revertDuration: 0  //  original position after the drag
+                    });
+
+                });
+            });
+        });
+
+    </script>
+
+</head>
+<body>
+    <div id='wrap'>
+
+        <div id='external-events'>
+            <h4>Draggable Events</h4>
+            <div>
+                診療項目：<input type="text" class="form-input" id="itemtitle" />
+                <br />
+                醫師：<input type="text" class="form-input" id="doctor" />
+                <br />
+                開始時間：<input type="text" class="form-input date" id="itemstart" />
+                <br />
+                結束時間：<input type="text" class="form-input date" id="itemend" />
+                <br />
+                <br />
+                <button id="send">送出</button>
+            </div>
+            <div class="item">
+            </div>
+            <p>
+                <input type='checkbox' id='drop-remove' />
+                <label for='drop-remove'>remove after drop</label>
+            </p>
+        </div>
+
+        <div id='calendar'></div>
+
+        <div style='clear:both'></div>
+
+    </div>
+</body>
+</html>
