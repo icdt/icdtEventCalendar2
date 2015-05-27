@@ -1,0 +1,65 @@
+﻿
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <form class="form-horizontal" role="form">
+           
+            <div class="form-group">
+                <label for="Tags" class="col-sm-2 control-label">科目</label>
+                <div class="col-sm-10">
+                    <select ng-model="SubjectObj" ng-options="item as item.SubjectName for item in SubjectObjs  track by item.id"></select>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ArticleAnnotate" class="col-sm-2 control-label">日期</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="ArticleAnnotate" ng-model="CalendarObj.ArticleAnnotate" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ArticleContent" class="col-sm-2 control-label">時間</label>
+                <div class="col-sm-10">
+                    <div class="well">
+                        <div id="datetimepicker3" class="input-append">
+                            <input data-format="hh:mm:ss" type="text"></input>
+                            <span class="add-on">
+                                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                                </i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="form-group">
+                <label for="ArticleTitle" class="col-sm-2 control-label">日期</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="ArticleTitle" ng-model="CalendarObj.ArticleTitle" />
+                </div>
+            </div>
+            <div class="form-horizontal">
+                <input type="text" datepicker-popup="dd-MMMM-yyyy" ng-model="dt" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" />
+                <button class="btn" ng-click="open()"><i class="icon-calendar"></i></button>
+            </div>
+            <div class="form-group">
+                <label for="ArticleTitle" class="col-sm-2 control-label">時間</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="ArticleTitle" ng-model="CalendarObj.ArticleTitle" />
+                </div>
+            </div>-->
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default" ng-click="save()">儲存</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+  $(function() {
+    $('#datetimepicker3').datetimepicker({
+        pickDate: false,
+        pickSeconds:false
+    });
+  });
+</script>

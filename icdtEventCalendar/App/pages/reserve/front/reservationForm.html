@@ -1,0 +1,36 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">掛號表單</h3>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+                <label class="radio"><input id="radio1" type="radio" name="radios" ng-model="userInfo.reserveType" value="初診"><span class="outer"><span class="inner"></span></span>初診</label>
+                <label class="radio"><input id="radio2" type="radio" name="radios" ng-model="userInfo.reserveType" value="復診"><span class="outer"><span class="inner"></span></span>複診</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="姓名" class="col-sm-2 control-label">姓名</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="userInfo.name" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="身分證字號" class="col-sm-2 control-label">身分證字號</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control"  ng-model="userInfo.cid" />  <!--pattern="^[A-Z]{1}[1-2]{1}[0-9]{8}$"-->
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn-success" ng-click="ok()">掛號</button>
+                <button class="btn btn-warning" ng-click="cancel()">取消</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>-->

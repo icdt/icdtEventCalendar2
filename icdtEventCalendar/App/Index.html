@@ -1,30 +1,48 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" ng-app="demo">
 <head>
-
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!--<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">-->
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="lib/fullcalendar/fullcalendar.css" rel="stylesheet" />
     <link href="lib/sidemenu/css/main.css" rel="stylesheet" />
+    <link href="style/calender.css" rel="stylesheet" />
+    <link href="style/formInputs.css" rel="stylesheet" />
 
     <script src="https://code.jquery.com/jquery.min.js"></script>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.7.0/lodash.js"></script>
     <script src="lib/fullcalendar/moment.min.js"></script>
+    <script src="lib/fullcalendar/fullcalendar.min.js"></script>
+    <script src="lib/fullcalendar/lang-all.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-sanitize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-animate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.js"></script>
     <script src="lib/fullcalendar/calendar-angular.js"></script>
     <script src="lib/sidemenu/js/jquery.navgoco.js"></script>
 
+    <!--parse-->
+    <script src="//www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+    <script>
+        Parse.initialize("vlPcRPe7adDkABlsUq6pU4781z4gxFf3Vy3phWy5", "BJ0I5wPPIOgMKg2lbmohFwPeeS3M9O6Y4qTtAdmj");
+    </script>
 
     <script src="app.js"></script>
+    <script src="lib/uuid_service.js"></script>
     <script src="pages/calendar/CalendarCtrl.js"></script>
+    <script src="pages/reserve/back/backCalendarCtrl.js"></script>
+    <script src="pages/reserve/front/frontCalendarCtrl.js"></script>
+    <script src="pages/reserve/front/reservationModal.js"></script>
+    <script src="data/eventService.js"></script>
+    <script src="data/reservationService.js"></script>
+    <script src="pages/parse/parse.js"></script>
 
 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+    <title>資雲預約系統</title>
 </head>
 <body>
 
@@ -33,13 +51,13 @@
 
             <!--Include your navigation here-->
             <li class="text-right"><a href="#" id="nav-close">X</a></li>
-            <li><a href="#">Menu One <span class="icon"></span></a></li>
-            <li><a href="#">Menu Two <span class="icon"></span></a></li>
-            <li><a href="#">Menu Three <span class="icon"></span></a></li>
-            <li>
+            <!--<li><a ui-sref="landing">Landing <span class="icon"></span></a></li>-->
+            <li><a ui-sref="reserve.back">預約後台 <span class="icon"></span></a></li>
+            <li><a ui-sref="reserve.front">預約前台<span class="icon"></span></a></li>
+            <!--<li>
                 <a href="#">Dropdown</a>
                 <ul class="list-unstyled">
-                    <li class="sub-nav"><a href="#">Sub Menu One <span class="icon"></span></a></li>
+                    <li class="sub-nav"><a ui-sref="#">Sub Menu One <span class="icon"></span></a></li>
                     <li class="sub-nav"><a href="#">Sub Menu Two <span class="icon"></span></a></li>
                     <li class="sub-nav"><a href="#">Sub Menu Three <span class="icon"></span></a></li>
                     <li class="sub-nav"><a href="#">Sub Menu Four <span class="icon"></span></a></li>
@@ -47,7 +65,7 @@
                 </ul>
             </li>
             <li><a href="#">Menu Four <span class="icon"></span></a></li>
-            <li><a href="#">Menu Five <span class="icon"></span></a></li>
+            <li><a href="#">Menu Five <span class="icon"></span></a></li>-->
 
 
         </ul>
@@ -56,10 +74,10 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
 
         <!--Include your brand here-->
-        <a class="navbar-brand" href="#">Off Canvas Menu</a>
+        <a class="navbar-brand" href="#">資雲預約系統</a>
         <div class="navbar-header pull-right">
             <a id="nav-expander" class="nav-expander fixed">
-                MENU &nbsp;<i class="fa fa-bars fa-lg white"></i>
+                選單 &nbsp;<i class="fa fa-bars fa-lg white"></i>
             </a>
         </div>
     </div>

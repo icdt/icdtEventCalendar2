@@ -1,0 +1,145 @@
+﻿<style>
+    body {
+        text-align: center;
+        font-size: 14px;
+        font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+    }
+
+    #wrap {
+        width: 1100px;
+        margin: 0 auto;
+    }
+
+    #external-events {
+        float: left;
+        width: 150px;
+        padding: 0 10px;
+        border: 1px solid #ccc;
+        background: #eee;
+        text-align: left;
+    }
+
+        #external-events h4 {
+            font-size: 16px;
+            margin-top: 0;
+            padding-top: 1em;
+        }
+
+        #external-events .fc-event {
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        #external-events p {
+            margin: 1.5em 0;
+            font-size: 11px;
+            color: #666;
+        }
+
+            #external-events p input {
+                margin: 0;
+                vertical-align: middle;
+            }
+
+    #calendar {
+        float: right;
+        width: 900px;
+    }
+
+    .form-input {
+        width: 100px;
+        height: 22px;
+        padding: 2px 5px;
+        margin-top: 5px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        background-color: #FFF;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+
+    .disabled {
+        background: #f2f2f2;
+        cursor: not-allowed;
+    }
+</style>
+
+
+
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <div id='wrap'>
+            <div id='external-events'>
+                <h4>事件</h4>
+                <div>
+                    <!--時間：                   
+                    <select ng-model="SubjectObj" ng-options="item as item.SubjectName for item in SubjectObjs  track by item.id" ng-change="targetTeacher(SubjectObj.id)"></select>
+                    醫師：
+                    <select ng-model="teacher" ng-options="item as item.Name for item in teachers  track by item.Id"></select>
+                    <br />-->
+                    時間：<input type="text" class="form-input" ng-model="schedule" />
+                    <br /><br />
+                    醫師：<input type="text" class="form-input" ng-model="doctor" />
+                    <br /><br />
+                    <!--<button ng-class="btn btn-success" ng-click="saveToServer()">儲存</button>-->
+                   
+                    <!--<button id="send">送出</button>-->
+                </div>
+                <!--<div>
+                    說明內容:
+                    <textarea rows="4" cols="50" style="max-width:600px;max-height:200px;" ng-model="content"></textarea>
+                </div>-->
+                <!--<p>
+                    <input type='checkbox' id='drop-remove' />
+                    <label for='drop-remove'>remove after drop</label>
+                </p>-->
+            </div>
+            <!--<div id='calendar'></div>-->
+            <div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources" id="calendar"></div>
+            <div style='clear:both'></div>
+            <div ng-repeat="item in events track by $index">
+                {{item}}
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+     .ui-timepicker-table td a {
+        display: block;
+         padding: 0 0.1em 0 0; 
+         width: 1.6em; 
+        cursor: pointer;
+        text-align: right;
+        text-decoration: none;
+    }
+</style>
+
+<!--<script>
+    $(function () {
+        $('.date').timepicker({
+            hourText: 'Hours',
+            minuteText: 'Minutes',
+            amPmText: ['AM', 'PM'],
+            timeSeparator: ':',
+            showLeadingZero: false,
+            nowButtonText: 'Now',
+            showNowButton: true,
+            closeButtonText: 'Done',
+            showCloseButton: true,
+            deselectButtonText: 'Désélectionner',
+            showDeselectButton: false
+        });
+        //$('.date').clockpicker({
+        //    placement: 'bottom',
+        //    align: 'left',
+        //    autoclose: true,
+        //    'default': 'now'
+        //});
+    });
+</script>-->

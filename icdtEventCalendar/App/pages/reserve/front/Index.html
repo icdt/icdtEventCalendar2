@@ -1,0 +1,46 @@
+﻿<div class="row clearfix">
+    <div class="col-md-12 column">
+        <div id='wrap'>
+            <!--<div id='calendar'></div>-->
+            <div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources" id="calendar"></div>
+            <div style='clear:both'></div>
+            <!--<div ng-repeat="item in events track by $index">
+                {{item}}
+            </div>-->
+        </div>
+    </div>
+</div>
+<style>
+     .ui-timepicker-table td a {
+        display: block;
+         padding: 0 0.1em 0 0; 
+         width: 1.6em; 
+        cursor: pointer;
+        text-align: right;
+        text-decoration: none;
+    }
+</style>
+
+<!--<script>
+    $(function () {
+        $('.date').timepicker({
+            hourText: 'Hours',
+            minuteText: 'Minutes',
+            amPmText: ['AM', 'PM'],
+            timeSeparator: ':',
+            showLeadingZero: false,
+            nowButtonText: 'Now',
+            showNowButton: true,
+            closeButtonText: 'Done',
+            showCloseButton: true,
+            deselectButtonText: 'Désélectionner',
+            showDeselectButton: false
+        });
+        //$('.date').clockpicker({
+        //    placement: 'bottom',
+        //    align: 'left',
+        //    autoclose: true,
+        //    'default': 'now'
+        //});
+    });
+</script>-->

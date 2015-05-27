@@ -1,7 +1,7 @@
 ﻿app.controller('CalendarCtrl', ['$scope', '$compile', '$timeout', 'uiCalendarConfig', function ($scope, $compile, $timeout, uiCalendarConfig) {
 
     /* event source that contains custom events on the scope */
-    $scope.events = JSON.parse(localStorage["events"]);
+    //$scope.events = JSON.parse(localStorage["events"]);
     
     /* alert on eventClick */
     $scope.alertOnEventClick = function (date, jsEvent, view) {

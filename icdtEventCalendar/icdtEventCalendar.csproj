@@ -158,6 +158,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\app.js" />
+    <Content Include="App\data\eventService.js" />
+    <Content Include="App\data\reservationService.js" />
     <Content Include="App\Index.html" />
     <Content Include="App\lib\fullcalendar\bootstrap-clockpicker.min.css" />
     <Content Include="App\lib\fullcalendar\bootstrap-clockpicker.min.js" />
@@ -173,9 +175,23 @@
     <Content Include="App\lib\sidemenu\js\jquery-1.10.2.min.js" />
     <Content Include="App\lib\sidemenu\js\jquery.navgoco.js" />
     <Content Include="App\lib\sidemenu\js\main.js" />
+    <Content Include="App\lib\uuid_service.js" />
     <Content Include="App\pages\calendar\CalendarCtrl.js" />
     <Content Include="App\pages\external-dragging.html" />
     <Content Include="App\pages\calendar\icdtEventCalendar.html" />
+    <Content Include="App\pages\parse\index.html" />
+    <Content Include="App\pages\parse\parse.js" />
+    <Content Include="App\pages\reserve\back\backCalendarCtrl.js" />
+    <Content Include="App\pages\reserve\back\form.html" />
+    <Content Include="App\pages\reserve\back\Index.html" />
+    <Content Include="App\pages\reserve\front\frontCalendarCtrl.js" />
+    <Content Include="App\pages\reserve\front\form.html" />
+    <Content Include="App\pages\reserve\front\Index.html" />
+    <Content Include="App\pages\reserve\front\reservationForm.html" />
+    <Content Include="App\pages\reserve\front\reservationModal.js" />
+    <Content Include="App\pages\reserve\front\reservationResult.html" />
+    <Content Include="App\style\calender.css" />
+    <Content Include="App\style\formInputs.css" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
