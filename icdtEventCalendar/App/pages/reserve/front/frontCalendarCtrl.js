@@ -38,6 +38,7 @@
                     reserveDate: new Date(eventObj.start._d),
                     reserveDateInDate: { "__type": "Date", "iso": new Date(eventObj.start._d) },
                     reserveDoctor: eventObj.title,
+                    reserveInfo: userInfo.information,
                     reserveNo: 1
                 };
 
@@ -77,7 +78,7 @@
         $scope.uiConfig = {
             calendar: {
                 lang: 'zh-tw',
-                height: 450,
+                height: 600,
                 editable: true,
                 //header: {
                 //    left: 'title',

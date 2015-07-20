@@ -10,9 +10,8 @@ namespace icdtEventCalendar.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
 
-            return View();
+            return Redirect("~/App/Index.html");
         }
     }
 }

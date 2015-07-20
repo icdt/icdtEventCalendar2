@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -182,8 +183,11 @@
     <Content Include="App\pages\parse\index.html" />
     <Content Include="App\pages\parse\parse.js" />
     <Content Include="App\pages\reserve\back\backCalendarCtrl.js" />
+    <Content Include="App\pages\reserve\back\datepicker-zh-TW.js" />
     <Content Include="App\pages\reserve\back\form.html" />
     <Content Include="App\pages\reserve\back\Index.html" />
+    <Content Include="App\pages\reserve\back\list.html" />
+    <Content Include="App\pages\reserve\back\list.js" />
     <Content Include="App\pages\reserve\front\frontCalendarCtrl.js" />
     <Content Include="App\pages\reserve\front\form.html" />
     <Content Include="App\pages\reserve\front\Index.html" />
@@ -219,6 +223,8 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <None Include="Properties\PublishProfiles\icdtReservation - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\icdtReservation - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

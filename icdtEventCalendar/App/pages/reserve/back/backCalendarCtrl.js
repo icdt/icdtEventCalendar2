@@ -49,7 +49,7 @@
     $scope.uiConfig = {
         calendar: {
             lang: 'zh-tw',
-            height: 450,
+            height: 600,
             editable: true,
             //header: {
             //    left: 'title',

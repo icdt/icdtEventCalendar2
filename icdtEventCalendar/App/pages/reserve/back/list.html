@@ -1,0 +1,63 @@
+﻿<div class="row clearfix">
+
+    <div class="col-md-3">
+        <p class="input-group">
+            <!--<input type="date" class="form-control" datepicker-popup ng-model="vm.selectDate" is-open="opened" min-date="minDate" max-date="'2017-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>-->
+            <input type="text" class="form-control" id="datepicker" ng-model="vm.selectDate"/>
+        </p>
+    </div>
+    <div class="col-md-9"><button ng-click="selectByDate()" class="btn btn-success" style="display: inline-block;">查詢</button></div>
+</div>
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        掛號日期
+                    </th>
+                    <th>
+                        掛號時段
+                    </th>
+                    <th>
+                        掛號序號
+                    </th>
+                    <th>
+                        姓名
+                    </th>
+                    <th>
+                        諮詢需求
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in reservationList">
+                    <td class="col-md-1">
+                        {{item.reserveDate}}
+                    </td>
+                    <td class="col-md-2">
+                        {{item.reserveDoctor}}
+                    </td>
+                    <td class="col-md-2">
+                        {{item.reserveNo}}
+                    </td>
+                    <td class="col-md-2">
+                        {{item.name}}
+                    </td>
+                    <td class="col-md-5">
+                        {{item.reserveInfo}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+  $(function() {
+      $("#datepicker").datepicker();
+      $.datepicker.setDefaults($.datepicker.regional["zh-TW"]);
+  });
+</script>

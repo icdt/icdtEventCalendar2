@@ -38,6 +38,11 @@ function ($stateProvider, $urlRouterProvider, $httpProvider, PARSE_CREDENTIALS) 
              templateUrl: 'pages/reserve/back/Index.html',
              controller: 'BackCalendarCtrl'
          })
+        .state('reserve.orderList', {
+            url: '/orderList',
+            templateUrl: 'pages/reserve/back/list.html',
+            controller: 'BackOrderListCtrl'
+        })
         .state('reserve.front', {
             url: '/front',
             templateUrl: 'pages/reserve/front/Index.html',
